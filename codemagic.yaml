@@ -6,7 +6,7 @@ workflows:
       - name: Build ipa for distribution
         script: | 
           xcode-project build-ipa \
-            --workspace "YourApp.xcworkspace" \
-            --scheme "YourAppScheme"  # Replace with your Xcode scheme name
+            --workspace "WalletApp.xcworkspace" \
+            --scheme "WalletApp"  # Replace with your Xcode scheme name
     artifacts:
       - build/ios/ipa/*.ipa
