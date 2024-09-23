@@ -1,12 +1,12 @@
-scripts:
-  # ...
-  - name: Build ipa for distribution
-    script: | 
-      xcode-project build-ipa \
-        --workspace "$CM_BUILD_DIR/$XCODE_WORKSPACE" \
-        --scheme "$XCODE_SCHEME"
-artifacts:
-  - build/ios/ipa/*.ipa
-  - /tmp/xcodebuild_logs/*.log
-  - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
-  - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+workflows:
+  ios-workflow:
+    name: iOS Workflow
+    instance_type: mac_mini_m2
+    scripts:
+      - name: Build ipa for distribution
+        script: | 
+          xcode-project build-ipa \
+            --workspace "YourApp.xcworkspace" \
+            --scheme "YourAppScheme"  # Replace with your Xcode scheme name
+    artifacts:
+      - build/ios/ipa/*.ipa
