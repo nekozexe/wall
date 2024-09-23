@@ -4,9 +4,10 @@ workflows:
     instance_type: mac_mini_m2
     scripts:
       - name: Build ipa for distribution
-        script: | 
-          xcode-project build-ipa \
-            --workspace "WalletApp.xcworkspace" \
-            --scheme "WalletApp"  # Replace with your Xcode scheme name
+        script: |
+          flutter build ios --release
+          cd ios
+          xcodebuild -workspace Runner.xcworkspace -scheme Runner -archive-path build/Runner.xcarchive archive
+          xcodebuild -exportArchive -archivePath build/Runner.xcarchive -exportPath build/Runner.ipa -exportOptionsPlist Runner/ExportOptions.plist
     artifacts:
       - build/ios/ipa/*.ipa
